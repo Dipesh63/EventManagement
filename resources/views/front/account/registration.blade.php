@@ -33,7 +33,7 @@
                     </form>                    
                 </div>
                 <div class="mt-6 text-center">
-                    <p>Have an account? <a href="login.html" class="text-blue-600 hover:underline">Login</a></p>
+                    <p>Have an account? <a href="{{ route('account.login') }}" class="text-blue-600 hover:underline">Login</a></p>
                 </div>
             </div>
         </div>
