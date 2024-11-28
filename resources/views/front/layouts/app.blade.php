@@ -34,7 +34,11 @@
                         </li>
                     </ul>
                     <div class="flex items-center space-x-2">
-                        <a class="border border-blue-600 text-blue-600 px-3 py-1 rounded hover:bg-blue-600 hover:text-white transition" href="login.html">Login</a>
+                       @if(!Auth::check())
+                        <a class="border border-blue-600 text-blue-600 px-3 py-1 rounded hover:bg-blue-600 hover:text-white transition" href="{{ route('account.login') }}">Login</a>
+                        @else
+                        <a class="border border-blue-600 text-blue-600 px-3 py-1 rounded hover:bg-blue-600 hover:text-white transition" href="{{ route('account.profile') }}">Profile</a>
+                        @endif
                         <a class="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700 transition" href="post-job.html">Post a Job</a>
                     </div>
                 </div>

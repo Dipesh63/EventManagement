@@ -14,3 +14,17 @@ Route::post('/account/Process_UserRegister',[AccountController::class,'processRe
 Route::get('/account/login',[AccountController::class,'login'])->name('account.login');
 Route::post('/account/authentication',[AccountController::class,'authenticateUser'])->name('account.authenticateUser');
 Route::get('/account/profile',[AccountController::class,'profile'])->name('account.profile');
+
+
+
+
+// Route::get('/account/create-event',[AccountController::class,'createEvent'])->name('account.event');
+// Route::post('/account/save-event',[AccountController::class,'store'])->name('account.saveJob');
+
+// Route::get('/account/create-event', [AccountController::class, 'createEvent'])->name('account.event');
+// Route::post('/account/save-event', [AccountController::class, 'store'])->name('account.saveJob');
+
+
+
+Route::get('/account/create2',[AccountController::class,'createEvent2'])->name('account.createEvent2');
+Route::post('/account/create2',[AccountController::class,'createEvent2'])->name('account.saveJob2');
