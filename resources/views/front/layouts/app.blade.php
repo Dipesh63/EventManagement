@@ -2,14 +2,14 @@
 <html class="no-js" lang="en_AU" />
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>CareerVibe | Find Best Jobs</title>
+	{{-- <title>Event management | Find Best Jobs</title> --}}
 	<meta name="description" content="" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1, user-scalable=no" />
 	<meta name="HandheldFriendly" content="True" />
 	<meta name="pinterest" content="nopin" />
     <meta name="csrf-token" content="{{ csrf_token() }}" />
-	<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css" /> -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
+    {{-- <link rel="stylesheet" type="text/css" href="assets/css/style.css" />  --}}
 	<!-- Fav Icon -->
 	<link rel="shortcut icon" type="image/x-icon" href="#" />
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.0/dist/tailwind.min.css" rel="stylesheet">
@@ -18,7 +18,7 @@
     <header>
         <nav class="bg-white shadow py-3">
             <div class="container mx-auto flex items-center justify-between px-6"> <!-- Added px-6 for padding on both sides -->
-                <a class="text-2xl font-semibold text-gray-800" href="index.html">CareerVibe</a>
+                <a class="text-2xl font-semibold text-gray-800" href="index.html">Event management</a>
                 <button class="lg:hidden text-gray-800 focus:outline-none" type="button" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
@@ -30,7 +30,7 @@
                             <a class="text-gray-800 hover:text-gray-600" href="index.html">Home</a>
                         </li>
                         <li>
-                            <a class="text-gray-800 hover:text-gray-600" href="jobs.html">Find Jobs</a>
+                            {{-- <a class="text-gray-800 hover:text-gray-600" href="jobs.html">Find Jobs</a> --}}
                         </li>
                     </ul>
                     <div class="flex items-center space-x-2">
@@ -39,7 +39,7 @@
                         @else
                         <a class="border border-blue-600 text-blue-600 px-3 py-1 rounded hover:bg-blue-600 hover:text-white transition" href="{{ route('account.profile') }}">Profile</a>
                         @endif
-                        <a class="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700 transition" href="post-job.html">Post a Job</a>
+                        <a class="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700 transition" href="post-job.html">Post Event</a>
                     </div>
                 </div>
             </div>

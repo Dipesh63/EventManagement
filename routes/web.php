@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\EventsController;
+use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -26,5 +28,21 @@ Route::get('/account/profile',[AccountController::class,'profile'])->name('accou
 
 
 
-Route::get('/account/create2',[AccountController::class,'createEvent2'])->name('account.createEvent2');
-Route::post('/account/create2',[AccountController::class,'createEvent2'])->name('account.saveJob2');
+Route::get('/account/create',[AccountController::class,'createEvent2'])->name('account.createEvent');
+Route::post('/account/store2',[AccountController::class,'store2'])->name('account.saveJob2');
+
+
+Route::get('/events',[EventsController::class,'index'])->name('events');
+Route::get('/events/detail/{id}',[EventsController::class,'detail'])->name('eventsDetail');
+
+
+
+
+
+
+
+
+Route::get('auth/google', [GoogleAuthController::class, 'redirect'])->name('google-auth');
+Route::get('auth/google/callback', [GoogleAuthController::class, 'callbackbygoogle']);
+Route::get('/dashboardnew', [AccountController::class, 'dashboardnew'])->name('dashboardnew');
+Route::get('/dashboardnew2', [AccountController::class, 'dashboardnew2'])->name('dashboardnew2');

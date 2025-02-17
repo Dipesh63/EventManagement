@@ -1,163 +1,187 @@
 @extends('front.layouts.app')
 
 @section('main')
-<section class="section-5 bg-2">
-    <div class="container py-5">
-        <div class="row">
-            <div class="col">
-                <nav aria-label="breadcrumb" class=" rounded-3 p-3 mb-4">
-                    <ol class="breadcrumb mb-0">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Account Settings</li>
-                    </ol>
-                </nav>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-3">
+
+<section class="bg-gray-100">
+    <div class="container mx-auto py-10">
+        <div class="flex flex-col lg:flex-row lg:space-x-8">
+            <!-- Sidebar with 25% width on the left side -->
+            <div class="w-full lg:w-1/4 mb-8 lg:mb-0">
                 @include('front.account.sidebar')
             </div>
-            <div class="col-lg-9">
-                {{-- @include('front.message') --}}
 
-                <form action="{{ route('account.saveJob2') }}" method="post" id="createEventForm" name="createEventForm">
+            <!-- Main content with 75% width on the right side -->
+            <div class="w-full lg:w-3/4">
+                <form action="" method="post" id="createEventForm" name="createEventForm">
                     @csrf
-                    <div class="card border-0 shadow mb-4 ">
-                        <div class="card-body card-form p-4">
-                            <h3 class="fs-4 mb-1">Event Details</h3>
-                            <div class="row">
-                                <div class="col-md-6 mb-4">
-                                    <label for="" class="mb-2">Title<span class="req">*</span></label>
-                                    <input type="text" placeholder="Job Title" id="title" name="title" class="form-control">
-                                    <p></p>
+
+                    <!-- Event Details Card -->
+                    <div class="bg-white rounded-lg shadow-md mb-6">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-semibold mb-4">Event Details</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+
+                                <div class="mb-4">
+                                    <label for="title" class="block text-gray-700 mb-2">Title*</label>
+                                    <input type="text" name="title" id="title" placeholder="Event Title" class="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:border-blue-500">
+                                    <p class="text-red-500"></p>
                                 </div>
-                                <div class="col-md-6  mb-4">
-                                    <label for="" class="mb-2">Category<span class="req">*</span></label>
-                                    <select name="category" id="category" class="form-control">
+
+
+                                <div class="mb-4">
+                                    <label for="category" class="block text-gray-700 mb-2">Category*</label>
+                                    <select name="category" id="category" class="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:border-blue-500">
                                         <option value="">Select a Category</option>
-                                        @if ($categories->isNotEmpty())
-                                            @foreach ($categories as $category)
+                                        @foreach ($categories as $category)
                                             <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                            @endforeach
-                                        @endif
+                                        @endforeach
                                     </select>
-                                    <p></p>
+                                    <p class="text-red-500"></p>
                                 </div>
-                            </div>
-                            
-                            <div class="row">
-                                <div class="col-md-6 mb-4">
-                                    <label for="" class="mb-2">Job Type<span class="req">*</span></label>
-                                    <select name="deptType" id="deptType" class="form-select">
-                                        <option value="">Select Job Type</option>
+
+
+                                <div class="mb-4">
+                                    <label for="deptType"  class="block text-gray-700 mb-2">Dept Type</label>
+                                    <select name="deptType" id="deptType" class="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:border-blue-500">
+                                        <option value="">Select Department Type</option>
                                         @if ($deptTypes->isNotEmpty())
                                             @foreach ($deptTypes as $deptType)
-                                            <option value="{{ $deptType->id }}">{{ $deptType->name }}</option>
+                                                <option value="{{ $deptType->id }}">{{ $deptType->name }}</option>
                                             @endforeach
                                         @endif
                                     </select>
-                                    <p></p>
-                                </div>
-                                <div class="col-md-6  mb-4">
-                                    <label for="" class="mb-2">Vacancy<span class="req">*</span></label>
-                                    <input type="number" min="1" placeholder="Vacancy" id="vacancy" name="vacancy" class="form-control">
-                                    <p></p>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="mb-4 col-md-6">
-                                    <label for="" class="mb-2">Salary</label>
-                                    <input type="text" placeholder="Salary" id="salary" name="salary" class="form-control">
+                                    <p class="text-red-500"></p>
                                 </div>
 
-                                <div class="col-md-6 mb-4">
-                                    <label for="" class="mb-2">Location<span class="req">*</span></label>
-                                    <select name="Loc" id="Loc" class="form-select">
-                                        <option value="">Select Job Type</option>
+                                
+                                <div class="mb-4">
+                                    <label for="vacancy" class="block text-gray-700 mb-2">Vacancy<span class="text-red-500">*</span></label>
+                                    <input type="number" min="1" placeholder="Vacancy" id="vacancy" name="vacancy" class="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:border-blue-500">
+                                    <p class="text-red-500"></p>
+                                </div>
+
+
+                                <div class="mb-4">
+                                    <label for="registrationfees" class="block text-gray-700 mb-2">RegistrationFees</label>
+                                    <input type="text" placeholder="Reg. Fees" id="registrationfees" name="registrationfees" class="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:border-blue-500">
+                                </div>
+
+
+
+                                <div class="mb-4">
+                                    <label for="Loc" class="block text-gray-700 mb-2">Location<span class="text-red-500">*</span></label>
+                                    <select name="Loc" id="Loc" class="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:border-blue-500">
+                                        <option value="">Select Location</option>
                                         @if ($locations->isNotEmpty())
                                             @foreach ($locations as $location)
-                                            <option value="{{ $location->id }}">{{ $location->name }}</option>
+                                                <option value="{{ $location->id }}">{{ $location->versity_name }}</option>
                                             @endforeach
                                         @endif
                                     </select>
-                                    <p></p>
-                                </div>
-                            </div>
-
-                            <div class="mb-4">
-                                <label for="" class="mb-2">Description<span class="req">*</span></label>
-                                <textarea class="textarea" name="description" id="description" cols="5" rows="5" placeholder="Description"></textarea>
-                                <p></p>
-                            </div>
-                            <div class="mb-4">
-                                <label for="" class="mb-2">Benefits</label>
-                                <textarea class="textarea" name="benefits" id="benefits" cols="5" rows="5" placeholder="Benefits"></textarea>
-                            </div>
-                            <div class="mb-4">
-                                <label for="" class="mb-2">Responsibility</label>
-                                <textarea class="textarea" name="responsibility" id="responsibility" cols="5" rows="5" placeholder="Responsibility"></textarea>
-                            </div>
-                            <div class="mb-4">
-                                <label for="" class="mb-2">Qualifications</label>
-                                <textarea class="textarea" name="qualifications" id="qualifications" cols="5" rows="5" placeholder="Qualifications"></textarea>
-                            </div>
-
-                            <div class="mb-4">
-                                <label for="" class="mb-2">Experience <span class="req">*</span></label>
-                                <select name="duration" id="duration" class="form-control">
-                                    <option value="1">1 Year</option>
-                                    <option value="2">2 Years</option>
-                                    <option value="3">3 Years</option>
-                                    <option value="4">4 Years</option>
-                                    <option value="5">5 Years</option>
-                                    <option value="6">6 Years</option>
-                                    <option value="7">7 Years</option>
-                                    <option value="8">8 Years</option>
-                                    <option value="9">9 Years</option>
-                                    <option value="10">10 Years</option>
-                                    <option value="10_plus">10+ Years</option>
-                                </select>
-                                <p></p>
-                            </div>
-                            
-                            
-
-                            <div class="mb-4">
-                                <label for="" class="mb-2">Keywords</label>
-                                <input type="text" placeholder="keywords" id="keywords" name="keywords" class="form-control">
-                            </div>
-
-                            <h3 class="fs-4 mb-1 mt-5 border-top pt-5">Company Details</h3>
-
-                            <div class="row">
-                                <div class="mb-4 col-md-6">
-                                    <label for="" class="mb-2">Name<span class="req">*</span></label>
-                                    <input type="text" placeholder="Company Name" id="club_name" name="club_name" class="form-control">
-                                    <p></p>
+                                    <p class="text-red-500"></p>
                                 </div>
 
-                                <div class="mb-4 col-md-6">
-                                    <label for="" class="mb-2">Location</label>
-                                    <input type="text" placeholder="Location" id="club_location" name="club_location" class="form-control">
+
+
+                                <div class="mb-4">
+                                    <label for="description" class="block text-gray-700 mb-2">Description<span class="text-red-500">*</span></label>
+                                    <textarea class="textarea mt-2 block w-full p-2 border border-gray-300 rounded-md" name="description" id="description" cols="5" rows="5" placeholder="Description"></textarea>
+                                    <p class="text-red-500"></p>
                                 </div>
+
+                                <div class="mb-4">
+                                    <label for="benefits" class="block text-sm font-medium text-gray-700">Benefits</label>
+                                    <textarea class="textarea mt-2 block w-full p-2 border border-gray-300 rounded-md" name="benefits" id="benefits" cols="5" rows="5" placeholder="Benefits"></textarea>
+                                </div>
+    
+                                <div class="mb-4">
+                                    <label for="responsibility" class="block text-sm font-medium text-gray-700">Responsibility</label>
+                                    <textarea class="textarea mt-2 block w-full p-2 border border-gray-300 rounded-md" name="responsibility" id="responsibility" cols="5" rows="5" placeholder="Responsibility"></textarea>
+                                </div>
+    
+                                <div class="mb-4">
+                                    <label for="qualifications" class="block text-sm font-medium text-gray-700">Qualifications</label>
+                                    <textarea class="textarea mt-2 block w-full p-2 border border-gray-300 rounded-md" name="qualifications" id="qualifications" cols="5" rows="5" placeholder="Qualifications"></textarea>
+                                </div>
+
+
+                                <div class="mb-4">
+                                    <label for="duration" class="block text-sm font-medium text-gray-700">Duration <span class="text-red-500">*</span></label>
+                                    <select name="duration" id="duration" class="form-control mt-2 block w-full p-2 border border-gray-300 rounded-md">
+                                        <option value="1">1 Year</option>
+                                        <option value="2">2 Years</option>
+                                        <option value="3">3 Years</option>
+                                        <option value="4">4 Years</option>
+                                        <option value="5">5 Years</option>
+                                        <option value="6">6 Years</option>
+                                        <option value="7">7 Years</option>
+                                        <option value="8">8 Years</option>
+                                        <option value="9">9 Years</option>
+                                        <option value="10">10 Years</option>
+                                        <option value="10_plus">10+ Years</option>
+                                    </select>
+                                    <p class="text-red-500"></p>
+                                </div>
+
+
+                                <div class="mb-4">
+                                    <label for="keywords" class="block text-sm font-medium text-gray-700">Keywords</label>
+                                    <input type="text" placeholder="keywords" id="keywords" name="keywords" class="form-control mt-2 block w-full p-2 border border-gray-300 rounded-md">
+                                </div>
+
+
                             </div>
 
-                            <div class="mb-4">
-                                <label for="" class="mb-2">Website</label>
-                                <input type="text" placeholder="Website" id="website" name="website" class="form-control">
+                            <!-- Other Fields (similar structure) -->
+                            <!-- Add the remaining fields here with similar styling as in profile.blade.php -->
+                            <!-- For example: Job Type, Vacancy, Salary, Location, Description, etc. -->
+
+                            <!-- Submit Button -->
+                            {{-- <div class="p-6 bg-gray-50 text-right">
+                                <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600">Submit</button>
+                            </div> --}}
+                        </div>
+
+
+
+                         <!-- Club Details Card -->
+                        <div class="bg-white rounded-lg shadow-md">
+                            <div class="p-6">
+                                <h3 class="text-2xl font-semibold mb-4">Club Details</h3>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div class="mb-4">
+                                        <label for="club_name" class="block text-gray-700 mb-2">Name*</label>
+                                        <input type="text" name="club_name" id="club_name" placeholder="Club Name" class="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:border-blue-500">
+                                        <p class="text-red-500"></p>
+                                    </div>
+                                    <div class="mb-4">
+                                        <label for="club_location" class="block text-gray-700 mb-2">Location*</label>
+                                        <input type="text" name="club_location" id="club_location" placeholder="Club Location" class="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:border-blue-500">
+                                    </div>
+                                </div>
+    
+                                <div class="mb-4">
+                                    <label for="club_website" class="block text-gray-700 mb-2">Website*</label>
+                                    <input type="text" name="website" id="website" placeholder="Club Website" class="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:border-blue-500">
+                                </div>
+    
+                                <div class="p-6 bg-gray-50 text-right">
+                                    <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600">Submit</button>
+                                </div>
                             </div>
-                        </div> 
-                        <div class="card-footer  p-4">
-                            <button type="submit" class="btn btn-primary">Save Job</button>
-                        </div>               
+                        </div>
+
                     </div>
+
+                   
+                   
                 </form>
-                               
             </div>
         </div>
     </div>
 </section>
+
 @endsection
 
 
@@ -168,51 +192,246 @@
 
 @section('customJs')
 <script>
-document.getElementById('createEventForm').addEventListener('submit', async function(e) {
+// $("#createEventForm").submit(function(e){
+//     e.preventDefault();
+
+//     $.ajax({
+//         url: '{{ route("account.saveJob2") }}',
+//         type: 'post',
+//         data: $("#createEventForm").serializeArray(),
+//         dataType: 'json',
+//         success: function(response) {
+//             if (response.status == false) {
+//                 var errors = response.errors;
+                
+//                 if (errors.title) {
+//                     $("#title").addClass('is-invalid')
+//                     .siblings('p')
+//                     .addClass('text-red-500')
+//                     .html(errors.title);
+//                 } else {
+//                     $("#title").removeClass('is-invalid')
+//                     .siblings('p')
+//                     .removeClass('text-red-500')
+//                     .html('');
+//                 }
+
+//                 if (errors.email) {
+//                     $("#category").addClass('is-invalid')
+//                     .siblings('p')
+//                     .addClass('text-red-500')
+//                     .html(errors.category);
+//                 } else {
+//                     $("#category").removeClass('is-invalid')
+//                     .siblings('p')
+//                     .removeClass('text-red-500')
+//                     .html('');
+//                 }
+
+//                 if (errors.password) {
+//                     $("#deptType").addClass('is-invalid')
+//                     .siblings('p')
+//                     .addClass('text-red-500')
+//                     .html(errors.deptType);
+//                 } else {
+//                     $("#deptType").removeClass('is-invalid')
+//                     .siblings('p')
+//                     .removeClass('text-red-500')
+//                     .html('');
+//                 }
+
+//                 if (errors.vacancy) {
+//                     $("#confirm_password").addClass('is-invalid')
+//                     .siblings('p')
+//                     .addClass('text-red-500')
+//                     .html(errors.vacancy);
+//                 } else {
+//                     $("#vacancy").removeClass('is-invalid')
+//                     .siblings('p')
+//                     .removeClass('text-red-500')
+//                     .html('');
+//                 }
+
+
+//                 if (errors.Loc) {
+//                     $("#Loc").addClass('is-invalid')
+//                     .siblings('p')
+//                     .addClass('text-red-500')
+//                     .html(errors.Loc);
+//                 } else {
+//                     $("#Loc").removeClass('is-invalid')
+//                     .siblings('p')
+//                     .removeClass('text-red-500')
+//                     .html('');
+//                 }
+
+//                 if (errors.description) {
+//                     $("#description").addClass('is-invalid')
+//                     .siblings('p')
+//                     .addClass('text-red-500')
+//                     .html(errors.description);
+//                 } else {
+//                     $("#description").removeClass('is-invalid')
+//                     .siblings('p')
+//                     .removeClass('text-red-500')
+//                     .html('');
+//                 }
+
+//                 if (errors.duration) {
+//                     $("#duration").addClass('is-invalid')
+//                     .siblings('p')
+//                     .addClass('text-red-500')
+//                     .html(errors.duration);
+//                 } else {
+//                     $("#duration").removeClass('is-invalid')
+//                     .siblings('p')
+//                     .removeClass('text-red-500')
+//                     .html('');
+//                 }
+
+
+//                 if (errors.club_name) {
+//                     $("#duration").addClass('is-invalid')
+//                     .siblings('p')
+//                     .addClass('text-red-500')
+//                     .html(errors.club_name);
+//                 } else {
+//                     $("#club_name").removeClass('is-invalid')
+//                     .siblings('p')
+//                     .removeClass('text-red-500')
+//                     .html('');
+//                 }
+
+
+
+//             } else {
+//                 $("#title, #category, #deptType, #vacancy, #Loc, #description, #duration, #club_name ").removeClass('is-invalid')
+//                 .siblings('p')
+//                 .removeClass('text-red-500')
+//                 .html('');
+
+//                 window.location.href='{{ route("account.login") }}';
+//             }
+//         }
+//     });
+
+// });
+$("#createEventForm").submit(function(e){
     e.preventDefault();
-    let formData = new FormData(this);
-    let submitButton = e.target.querySelector("button[type='submit']");
-    submitButton.disabled = true;
 
-    try {
-        clearPreviousErrors();
-        let response = await fetch("{{ route('account.saveJob2') }}", {
-            method: 'POST',
-            headers: {
-                'X-CSRF-TOKEN': '{{ csrf_token() }}'
-            },
-            body: formData
-        });
+    $.ajax({
+        url: '{{ route("account.saveJob2") }}', // Use a dedicated preview route
+        type: 'post',
+        data: $("#createEventForm").serializeArray(),
+        dataType: 'json',
+        success: function(response) {
+            if (response.status == false) {
+                var errors = response.errors;
 
-        let result = await response.json();
-        submitButton.disabled = false;
+                if (errors.title) {
+                    $("#title").addClass('is-invalid')
+                    .siblings('p')
+                    .addClass('text-red-500')
+                    .html(errors.title);
+                } else {
+                    $("#title").removeClass('is-invalid')
+                    .siblings('p')
+                    .removeClass('text-red-500')
+                    .html('');
+                }
 
-        if (result.status === true) {
-            window.location.href = "{{ route('account.profile') }}";
-        } else {
-            handleErrors(result.errors);
+                if (errors.category) {
+                    $("#category").addClass('is-invalid')
+                    .siblings('p')
+                    .addClass('text-red-500')
+                    .html(errors.category);
+                } else {
+                    $("#category").removeClass('is-invalid')
+                    .siblings('p')
+                    .removeClass('text-red-500')
+                    .html('');
+                }
+
+                if (errors.deptType) {
+                    $("#deptType").addClass('is-invalid')
+                    .siblings('p')
+                    .addClass('text-red-500')
+                    .html(errors.deptType);
+                } else {
+                    $("#deptType").removeClass('is-invalid')
+                    .siblings('p')
+                    .removeClass('text-red-500')
+                    .html('');
+                }
+
+                if (errors.vacancy) {
+                    $("#vacancy").addClass('is-invalid')
+                    .siblings('p')
+                    .addClass('text-red-500')
+                    .html(errors.vacancy);
+                } else {
+                    $("#vacancy").removeClass('is-invalid')
+                    .siblings('p')
+                    .removeClass('text-red-500')
+                    .html('');
+                }
+
+                if (errors.Loc) {
+                    $("#Loc").addClass('is-invalid')
+                    .siblings('p')
+                    .addClass('text-red-500')
+                    .html(errors.Loc);
+                } else {
+                    $("#Loc").removeClass('is-invalid')
+                    .siblings('p')
+                    .removeClass('text-red-500')
+                    .html('');
+                }
+
+                if (errors.description) {
+                    $("#description").addClass('is-invalid')
+                    .siblings('p')
+                    .addClass('text-red-500')
+                    .html(errors.description);
+                } else {
+                    $("#description").removeClass('is-invalid')
+                    .siblings('p')
+                    .removeClass('text-red-500')
+                    .html('');
+                }
+
+                if (errors.duration) {
+                    $("#duration").addClass('is-invalid')
+                    .siblings('p')
+                    .addClass('text-red-500')
+                    .html(errors.duration);
+                } else {
+                    $("#duration").removeClass('is-invalid')
+                    .siblings('p')
+                    .removeClass('text-red-500')
+                    .html('');
+                }
+
+                if (errors.club_name) {
+                    $("#club_name").addClass('is-invalid')
+                    .siblings('p')
+                    .addClass('text-red-500')
+                    .html(errors.club_name);
+                } else {
+                    $("#club_name").removeClass('is-invalid')
+                    .siblings('p')
+                    .removeClass('text-red-500')
+                    .html('');
+                }
+
+            } else {
+                // Display the collected form data in an alert for previewing
+                alert("Data to be saved:\n\n" + JSON.stringify(response.data, null, 4));
+                window.location.href='{{ route("account.profile") }}';
+            }
         }
-    } catch (error) {
-        console.error("Submission failed:", error);
-        submitButton.disabled = false;
-    }
+    });
 });
 
-function clearPreviousErrors() {
-    document.querySelectorAll('.is-invalid').forEach(el => el.classList.remove('is-invalid'));
-    document.querySelectorAll('.invalid-feedback').forEach(el => el.innerHTML = '');
-}
-
-function handleErrors(errors) {
-    for (let field in errors) {
-        let fieldElement = document.getElementById(field);
-        if (fieldElement) {
-            fieldElement.classList.add('is-invalid');
-            let errorMessage = errors[field][0];
-            fieldElement.nextElementSibling.classList.add('invalid-feedback');
-            fieldElement.nextElementSibling.innerHTML = errorMessage;
-        }
-    }
-}
 </script>
 @endsection

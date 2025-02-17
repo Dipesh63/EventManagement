@@ -54,6 +54,23 @@
                 <div class="mt-6 text-center">
                     <p>Do not have an account? <a href="{{ route('account.registration') }}" class="text-blue-500 hover:underline">Register</a></p>
                 </div>
+
+
+
+
+                
+<!-- Google Login button -->
+<form action="{{ route('google-auth') }}" method="GET">
+    @csrf
+    <button type="submit" class="btn btn-danger btn-block">Login Using Google</button>
+</form>
+
+
+
+
+
+
+
             </div>
         </div>
         <div class="py-20"></div>

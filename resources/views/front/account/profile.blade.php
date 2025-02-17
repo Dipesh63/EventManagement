@@ -35,7 +35,7 @@
                     </div>
                 </div>
 
-                <div class="bg-white rounded-lg shadow-md">
+                {{-- <div class="bg-white rounded-lg shadow-md">
                     <div class="p-6">
                         <h3 class="text-2xl font-semibold mb-4">Change Password</h3>
                         <div class="mb-4">
@@ -54,7 +54,7 @@
                     <div class="p-6 bg-gray-50 text-right">
                         <button type="button" class="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600">Update</button>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>
