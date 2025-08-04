@@ -68,27 +68,46 @@
                                 <p class="text-gray-600 mb-3">{{ $event->benefits }}</p>
                             </div>
                             <div class="border-t border-gray-300"></div>
+
+
+
+
                             <div class="pt-3 text-right">
-                                {{-- <a href=""
-                                    class="bg-gray-200 hover:bg-gray-300 text-gray-700 py-2 px-4 rounded-lg mr-2">Payment</a> --}}
-                                <a href="javascript:void(0)" id="paymentButton"
-                                    class="bg-gray-200 hover:bg-gray-300 text-gray-700 py-2 px-4 rounded-lg mr-2">Payment</a>
-
-
+                                {{-- Payment Button --}}
                                 @if (Auth::check())
-                                    @if ($hasApplied)
-                                        <button class="bg-gray-400 text-white py-2 px-4 rounded-lg" disabled>Applied</button>
+                                    @if ($hasPaid)
+                                        <button class="bg-gray-400 text-white py-2 px-4 rounded-lg" disabled>Paid</button>
                                     @else
-                                        <a id="applyButton" data-id="{{ $event->id }}" 
-                                           class="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600">Apply</a>
+                                        <a href="javascript:void(0)" id="paymentButton"
+                                            class="bg-gray-200 hover:bg-gray-300 text-gray-700 py-2 px-4 rounded-lg mr-8">Payment</a>
                                     @endif
                                 @else
-                                    <a href="{{ route('login') }}" class="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600">Log in to Apply</a>
+                                    <a href="{{ route('login') }}"
+                                        class="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 mr-8">Log in to
+                                        Pay</a>
                                 @endif
-                                
 
-
+                                {{-- Apply Button --}}
+                                @if (Auth::check())
+                                    @if ($hasApplied)
+                                        <button class="bg-gray-400 text-white py-2 px-4 rounded-lg"
+                                            disabled>Applied</button>
+                                    @else
+                                        <a id="applyButton" data-id="{{ $event->id }}"
+                                            class="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 mr-8">Apply</a>
+                                    @endif
+                                @else
+                                    <a href="{{ route('login') }}"
+                                        class="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 mr-8">Log in to
+                                        Apply</a>
+                                @endif
                             </div>
+
+
+
+
+
+
                         </div>
                     </div>
                 </div>

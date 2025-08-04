@@ -8,6 +8,7 @@ use App\Models\DeptType;
 use App\Models\Event;
 use App\Models\EventApplication;
 use App\Models\Location;
+use App\Models\Order;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -102,10 +103,21 @@ class EventsController extends Controller
                 ->exists();
         }
 
+
+
+        // Check if the logged-in user has already paid for the event
+        $hasPaid = false;
+        if (Auth::check()) {
+            $hasPaid = Order::where('payer_id', Auth::id())
+                ->where('event_id', $id)
+                ->exists();
+        }
+
         // Pass the necessary data to the Blade template
         return view('front.eventDetail', [
             'event' => $event,
-            'hasApplied' => $hasApplied
+            'hasApplied' => $hasApplied,
+            'hasPaid' => $hasPaid,
         ]);
 
 

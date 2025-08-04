@@ -133,3 +133,9 @@ Route::middleware([Authenticate::class])->group(function () {
     Route::get('/account/create', [AccountController::class, 'createEvent2'])->name('account.createEvent');
     Route::get('/events/detail/{id}', [EventsController::class, 'detail'])->name('eventsDetail');
 });
+
+
+
+Route::get('/account/applicants', [AccountController::class, 'showApplicants'])->name('account.showApplicants');
+Route::post('/account/update-profile-picture', [AccountController::class, 'updateProfilePicture'])->name('account.updateProfilePicture');
+

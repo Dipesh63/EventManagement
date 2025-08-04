@@ -6,12 +6,17 @@ use App\Models\Category;
 use App\Models\EventApplication;
 use App\Models\DeptType;
 use App\Models\Event;
+use App\Models\Order;
 use App\Models\Location;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Auth;;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Storage;
+
 
 class AccountController extends Controller
 {
@@ -216,6 +221,15 @@ class AccountController extends Controller
             'eventApplications' => $eventApplications
         ]);
     }
+   
+
+
+
+
+
+
+
+
 
     public function cancelEvents(Request $request)
     {
@@ -251,4 +265,92 @@ class AccountController extends Controller
         return view('front.account.login');
     }
 
+
+
+
+
+
+
+
+
+    // public function showApplicants()
+    // {
+    //     // Get the event applications for the events organized by the authenticated user, eager load the user
+    // $applicants = EventApplication::where('organizer_user_id', Auth::id())->get();  // Execute the query
+
+    // //dd($applicants);  // Dump and die to see the data
+
+        
+    //     // Pass the applicants to the view
+    //     return view('front.account.event.applicants', compact('applicants'));
+    // }
+
+    public function showApplicants()
+{
+    // Get the event applications for the events organized by the authenticated user
+    $applicants = EventApplication::where('organizer_user_id', Auth::id())->get(); // Execute the query
+
+    // For each applicant, determine the payment status
+    foreach ($applicants as $applicant) {
+        $order = Order::where('event_id', $applicant->event_id)
+                      ->where('payer_id', $applicant->admitted_user_id)
+                      ->first();
+
+        // Set payment status based on whether an order exists
+        $applicant->payment_status = $order ? 'Paid' : 'Unpaid';
+    }
+
+    // Pass the applicants to the view
+    return view('front.account.event.applicants', compact('applicants'));
 }
+
+
+
+
+public function updateProfilePicture(Request $request)
+{
+    // Validate the incoming request
+    $request->validate([
+        'profile_picture' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+    ]);
+
+    // Get the authenticated user
+    $user = Auth::user();
+
+    // Delete the old profile picture if it exists
+    if ($user->profile_picture && file_exists(public_path($user->profile_picture))) {
+        unlink(public_path($user->profile_picture));
+    }
+
+    // Store the new profile picture locally
+    $file = $request->file('profile_picture');
+    $fileName = uniqid() . '.' . $file->getClientOriginalExtension();
+    $filePath = 'assets/profile_pictures/' . $fileName;
+
+    // Save the file to the public directory
+    $file->move(public_path('assets/profile_pictures'), $fileName);
+
+    // Update the user's profile picture path in the database
+    $user->profile_picture = $filePath;
+    $user->save();
+
+    return back()->with('success', 'Profile picture updated successfully.');
+}
+
+    
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+

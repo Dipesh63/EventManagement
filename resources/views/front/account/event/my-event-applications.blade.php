@@ -53,6 +53,7 @@
                                                 {{ $eventApplication->status == 1 ? 'Active' : 'Applied' }}
                                             </span>
                                         </td>
+                                       
                                         <td class="py-4 px-5">
                                             <div class="relative">
                                                 <a class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" href="#" onclick="cancelEvent({{ $eventApplication->id }})"><i class="fa fa-trash mr-2" aria-hidden="true"></i> Cancel</a>

@@ -109,6 +109,7 @@ class SslCommerzPaymentController extends Controller
                 'transaction_id' => $post_data['tran_id'],
                 'currency' => $post_data['currency'],
                 'event_id' => $id,
+                'payer_id' => Auth::user()->id,
             ]);
 
         $sslc = new SslCommerzNotification();
