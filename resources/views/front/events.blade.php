@@ -93,20 +93,20 @@
                             </select>
                         </div>  --}}
                         <div class="mb-4">
-                            <h2 class="text-lg font-semibold mb-2">Experience</h2>
-                            <select name="experience" id="experience" class="border border-gray-300 rounded px-3 py-2 w-full">
-                                <option value="">Select Experience</option>
-                                <option value="1" {{ (Request::get('experience') == 1) ? 'selected' : '' }}>1 Year</option>
-                                <option value="2" {{ (Request::get('experience') == 2) ? 'selected' : '' }}>2 Years</option>
-                                <option value="3" {{ (Request::get('experience') == 3) ? 'selected' : '' }}>3 Years</option>
-                                <option value="4" {{ (Request::get('experience') == 4) ? 'selected' : '' }}>4 Years</option>
-                                <option value="5" {{ (Request::get('experience') == 5) ? 'selected' : '' }}>5 Years</option>
-                                <option value="6" {{ (Request::get('experience') == 6) ? 'selected' : '' }}>6 Years</option>
-                                <option value="7" {{ (Request::get('experience') == 7) ? 'selected' : '' }}>7 Years</option>
-                                <option value="8" {{ (Request::get('experience') == 8) ? 'selected' : '' }}>8 Years</option>
-                                <option value="9" {{ (Request::get('experience') == 9) ? 'selected' : '' }}>9 Years</option>
-                                <option value="10" {{ (Request::get('experience') == 10) ? 'selected' : '' }}>10 Years</option>
-                                <option value="10_plus" {{ (Request::get('experience') == '10_plus') ? 'selected' : '' }}>10+ Years</option>
+                            <h2 class="text-lg font-semibold mb-2">Duration</h2>
+                            <select name="duration" id="duration" class="border border-gray-300 rounded px-3 py-2 w-full">
+                                <option value="">Select Duration</option>
+                                <option value="1" {{ (Request::get('duration') == 1) ? 'selected' : '' }}>1 day</option>
+                                <option value="2" {{ (Request::get('duration') == 2) ? 'selected' : '' }}>2 day</option>
+                                <option value="3" {{ (Request::get('duration') == 3) ? 'selected' : '' }}>3 day</option>
+                                <option value="4" {{ (Request::get('duration') == 4) ? 'selected' : '' }}>4 day</option>
+                                <option value="5" {{ (Request::get('duration') == 5) ? 'selected' : '' }}>5 day</option>
+                                <option value="6" {{ (Request::get('duration') == 6) ? 'selected' : '' }}>6 day</option>
+                                <option value="7" {{ (Request::get('duration') == 7) ? 'selected' : '' }}>7 day</option>
+                                <option value="8" {{ (Request::get('duration') == 8) ? 'selected' : '' }}>8 day</option>
+                                <option value="9" {{ (Request::get('duration') == 9) ? 'selected' : '' }}>9 day</option>
+                                <option value="10" {{ (Request::get('duration') == 10) ? 'selected' : '' }}>10 day</option>
+                                <option value="10_plus" {{ (Request::get('duration') == '10_plus') ? 'selected' : '' }}>10+ Days</option>
                             </select>
                         </div>
                         
@@ -137,7 +137,7 @@
                                             </p>
                                             {{-- <p>Keywords: {{ $event->keywords }}</p> --}}
                                             <p>Category: {{ $event->category->name }}</p>
-                                            <p>Experience: {{ $event->duration }}</p>
+                                            <p>Duration: {{ $event->duration }}</p>
                                             @if (!is_null($event->salary))
                                             <p class="mb-2">
                                                 <span class="font-semibold"><i class="fa fa-dollar-sign"></i> {{ $event->salary }}</span>
@@ -176,7 +176,7 @@
         var keyword = $("#keyword").val();
         var location = $("#location").val();
         var category = $("#category").val();
-        var experience = $("#experience").val();
+        var duration = $("#duration").val();
         var sort = $("#sort").val();
 
         var checkedDeptTypes = $("input:checkbox[name='dept_type']:checked").map(function(){
@@ -195,8 +195,8 @@
             url += '&category='+category;
         }
 
-        if (experience != "") {
-            url += '&experience='+experience;
+        if (duration != "") {
+            url += '&duration='+duration;
         }
 
         if (checkedDeptTypes.length > 0) {

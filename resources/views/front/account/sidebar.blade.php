@@ -13,20 +13,26 @@
     <div class="p-0">
         <ul class="list-none">
             <li class="border-b last:border-b-0">
-                <a href="account.html" class="block py-3 px-4 hover:bg-gray-100">Account Settings</a>
+                <a href="{{ route('account.profile') }}" class="block py-3 px-4 hover:bg-gray-100">Account Settings</a>
             </li>
             <li class="border-b last:border-b-0">
                 <a href="{{ route('account.createEvent') }}" class="block py-3 px-4 hover:bg-gray-100">Post a Event</a>
             </li>
             <li class="border-b last:border-b-0">
-                <a href="my-jobs.html" class="block py-3 px-4 hover:bg-gray-100">My Events</a>
+                <a href="{{ route('account.myEvents') }}" class="block py-3 px-4 hover:bg-gray-100">My Events</a>
             </li>
             <li class="border-b last:border-b-0">
+                <a href="/events" class="block py-3 px-4 hover:bg-gray-100">Show All Events</a>
+            </li>
+            <li class="border-b last:border-b-0">
+                <a href="/account/my-event-applications" class="block py-3 px-4 hover:bg-gray-100">Show Applied Events</a>
+            </li>
+            {{-- <li class="border-b last:border-b-0">
                 <a href="job-applied.html" class="block py-3 px-4 hover:bg-gray-100">Events Applied</a>
             </li>
             <li class="border-b last:border-b-0">
                 <a href="saved-jobs.html" class="block py-3 px-4 hover:bg-gray-100">Saved Events</a>
-            </li>
+            </li> --}}
         </ul>
     </div>
 </div>

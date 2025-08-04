@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\EventApplication;
 use App\Models\DeptType;
 use App\Models\Event;
 use App\Models\Location;
@@ -19,8 +20,6 @@ class AccountController extends Controller
         return view('front.account.registration');
 
     }
-
-
 
      // This method will save a user
      public function processRegistration(Request $request) {
@@ -61,9 +60,6 @@ class AccountController extends Controller
     }
 
 
-    
-
-
     public function authenticateUser(Request $request){
         $validator = Validator::make($request->all(),[
             'email' => 'required|email',
@@ -85,10 +81,6 @@ class AccountController extends Controller
         }
 
     }
-
-
-
-
 
     public function profile(){
        $id = Auth::user()->id; 
@@ -173,14 +165,67 @@ class AccountController extends Controller
     }
     
 
+    public function myEvents(){
+
+        $events = Event::where('user_id',Auth::user()->id)->with('deptType')->paginate(1);
+
+       // dd($events);
+
+        return view('front.account.event.my-event',[
+            'events' => $events
+        ]);
+    }
 
 
+    public function deleteEvent(Request $request)
+    {
+        $event = Event::where([
+            'user_id'=>Auth::user()->id,
+            'id'=>$request->eventId
+        ])->first();
+
+        if($event==null){
+            session()->flash('error','Event not found');
+            return response()->json()([
+                'status'=>true
+            ]);
+        }
+
+        Event::where('id',$request->eventId)->delete();
+        session()->flash('success','Event deleted successfully');
+        return response()->json([
+            'status' => true
+        ]);
+    }
 
 
+    public function myEventApplication(){
+       $eventApplications = EventApplication::where('admitted_user_id',Auth::user()->id)->with('event','event.deptType')->paginate(10);
+        // dd($events);
+        return view('front.account.event.my-event-applications',[
+            'eventApplications' => $eventApplications
+        ]);
+    }
 
+    public function cancelEvents(Request $request)
+    {
+        $eventApplication = EventApplication::where(['id'=>$request->id , 'admitted_user_id' => Auth::user()->id])->first();
 
+        if($eventApplication==null)
+        {
+            session()->flash('error','Event Application not found');
+            return response()->json([
+                'status'=>false,
+            ]);
+        }
+        EventApplication::find($request->id)->delete();
+        session()->flash('success','Event cancel successfully');
+            return response()->json([
+                'status'=>true,
+            ]);
+    }
 
-
+    //Google Auth
 
     public function dashboardnew(){
         $id = Auth::user()->id; 

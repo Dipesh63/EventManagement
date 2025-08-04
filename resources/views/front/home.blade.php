@@ -58,7 +58,7 @@
                 @if ($categories->isNotEmpty())
                     @foreach ($categories as $category)
                         <div class="single_category bg-white p-4 rounded shadow text-center">
-                            <a href="jobs.html">
+                            <a href="{{route('events')}}">
                                 <h4 class="text-lg font-semibold text-gray-800 pb-2">{{ $category->name }}</h4>
                             </a>
                             <p class="text-gray-600 mb-0"> <span>50</span> Available positions</p>
@@ -80,7 +80,7 @@
 
     <section class="py-5 bg-gray-100">
         <div class="container mx-auto px-4 md:px-6"> <!-- Added horizontal padding -->
-            <h2 class="text-2xl font-bold text-center mb-5">Featured Jobs</h2>
+            <h2 class="text-2xl font-bold text-center mb-5">Featured Events</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
                 @if ($featuredevents->isNotEmpty())
@@ -112,7 +112,7 @@
                             class="block w-full text-center bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition">Details</a>
                     </div>
                 </div>
-                <!-- Repeat the above div for each job listing -->
+                <!-- Repeat the above div for each events listing -->
 
                 @endforeach
                 @endif
@@ -130,7 +130,7 @@
 
     <section class="py-5 bg-gray-100">
         <div class="container mx-auto px-4 md:px-6"> <!-- Added horizontal padding -->
-            <h2 class="text-2xl font-bold text-center mb-5">Latest Jobs</h2>
+            <h2 class="text-2xl font-bold text-center mb-5">Latest Events</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 @if ($latestevents->isNotEmpty())
                 @foreach ($latestevents as $latestevent)
@@ -161,7 +161,7 @@
                             class="block w-full text-center bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition">Details</a>
                     </div>
                 </div>
-                <!-- Repeat the above div for each job listing -->
+                <!-- Repeat the above div for each events listing -->
                 @endforeach
                 @endif
                 

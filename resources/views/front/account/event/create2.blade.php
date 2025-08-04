@@ -109,17 +109,17 @@
                                 <div class="mb-4">
                                     <label for="duration" class="block text-sm font-medium text-gray-700">Duration <span class="text-red-500">*</span></label>
                                     <select name="duration" id="duration" class="form-control mt-2 block w-full p-2 border border-gray-300 rounded-md">
-                                        <option value="1">1 Year</option>
-                                        <option value="2">2 Years</option>
-                                        <option value="3">3 Years</option>
-                                        <option value="4">4 Years</option>
-                                        <option value="5">5 Years</option>
-                                        <option value="6">6 Years</option>
-                                        <option value="7">7 Years</option>
-                                        <option value="8">8 Years</option>
-                                        <option value="9">9 Years</option>
-                                        <option value="10">10 Years</option>
-                                        <option value="10_plus">10+ Years</option>
+                                        <option value="1">1 day</option>
+                                        <option value="2">2 day</option>
+                                        <option value="3">3 dayy</option>
+                                        <option value="4">4 day</option>
+                                        <option value="5">5 day</option>
+                                        <option value="6">6 day</option>
+                                        <option value="7">7 Day</option>
+                                        <option value="8">8 Day</option>
+                                        <option value="9">9 Day</option>
+                                        <option value="10">10 Day</option>
+                                        <option value="10_plus">10+ Day</option>
                                     </select>
                                     <p class="text-red-500"></p>
                                 </div>
@@ -196,7 +196,7 @@
 //     e.preventDefault();
 
 //     $.ajax({
-//         url: '{{ route("account.saveJob2") }}',
+//         url: '{{ route("account.saveEvent2") }}',
 //         type: 'post',
 //         data: $("#createEventForm").serializeArray(),
 //         dataType: 'json',
@@ -320,7 +320,7 @@ $("#createEventForm").submit(function(e){
     e.preventDefault();
 
     $.ajax({
-        url: '{{ route("account.saveJob2") }}', // Use a dedicated preview route
+        url: '{{ route("account.saveEvent2") }}', // Use a dedicated preview route
         type: 'post',
         data: $("#createEventForm").serializeArray(),
         dataType: 'json',
@@ -426,7 +426,8 @@ $("#createEventForm").submit(function(e){
 
             } else {
                 // Display the collected form data in an alert for previewing
-                alert("Data to be saved:\n\n" + JSON.stringify(response.data, null, 4));
+                // alert("Data to be saved:\n\n" + JSON.stringify(response.data, null, 4));
+                alert("Data to be saved:\n\n");
                 window.location.href='{{ route("account.profile") }}';
             }
         }
