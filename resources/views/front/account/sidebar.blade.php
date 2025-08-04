@@ -27,6 +27,9 @@
             <li class="border-b last:border-b-0">
                 <a href="/account/my-event-applications" class="block py-3 px-4 hover:bg-gray-100">Show Applied Events</a>
             </li>
+            <li class="border-b last:border-b-0">
+                <a href="{{ route('account.logout') }}" class="block py-3 px-4 hover:bg-gray-100">Logout</a>
+            </li>
             {{-- <li class="border-b last:border-b-0">
                 <a href="job-applied.html" class="block py-3 px-4 hover:bg-gray-100">Events Applied</a>
             </li>

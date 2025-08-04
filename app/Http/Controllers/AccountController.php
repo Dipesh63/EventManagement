@@ -60,6 +60,16 @@ class AccountController extends Controller
     }
 
 
+
+
+    public function logout(){
+        Auth::logout();
+        return redirect()->route('account.login');
+    }
+
+
+
+
     public function authenticateUser(Request $request){
         $validator = Validator::make($request->all(),[
             'email' => 'required|email',

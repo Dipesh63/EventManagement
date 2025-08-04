@@ -69,17 +69,23 @@
                             </div>
                             <div class="border-t border-gray-300"></div>
                             <div class="pt-3 text-right">
-                                <a href="#"
-                                    class="bg-gray-200 hover:bg-gray-300 text-gray-700 py-2 px-4 rounded-lg mr-2">Save</a>
+                                {{-- <a href=""
+                                    class="bg-gray-200 hover:bg-gray-300 text-gray-700 py-2 px-4 rounded-lg mr-2">Payment</a> --}}
+                                <a href="javascript:void(0)" id="paymentButton"
+                                    class="bg-gray-200 hover:bg-gray-300 text-gray-700 py-2 px-4 rounded-lg mr-2">Payment</a>
+
 
                                 @if (Auth::check())
-                                    {{-- <a href=""  onclick="applyjob({{ $event->id }})"
-                                        class="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600">Apply</a> --}}
-                                    <a id="applyButton" data-id="{{ $event->id }}"
-                                        class="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600">Apply</a>
+                                    @if ($hasApplied)
+                                        <button class="bg-gray-400 text-white py-2 px-4 rounded-lg" disabled>Applied</button>
+                                    @else
+                                        <a id="applyButton" data-id="{{ $event->id }}" 
+                                           class="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600">Apply</a>
+                                    @endif
                                 @else
-                                    <a href="#" class="btn btn-primary">Apply</a>
+                                    <a href="{{ route('login') }}" class="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600">Log in to Apply</a>
                                 @endif
+                                
 
 
                             </div>
@@ -177,6 +183,32 @@
 
     <script type="text/javascript">
         document.addEventListener("DOMContentLoaded", function() {
+
+
+
+
+            // Get the event ID from the payment button
+            var paymentButton = document.getElementById("paymentButton");
+            var eventId = "{{ $event->id }}"; // Access the event ID dynamically from Blade
+
+            // Attach event listener to the payment button
+            paymentButton.addEventListener("click", function() {
+                // Redirect to the checkout route with the event ID
+                window.location.href = `/checkout3/${eventId}`;
+            });
+
+
+
+
+
+
+
+
+
+
+
+
+
             var applyButton = document.getElementById("applyButton");
             var messageContainer = document.getElementById(
                 "responseMessage"); // This is where the message will appear
@@ -205,11 +237,10 @@
                         dataType: 'json',
                         success: function(response) {
                             if (response.status === 'success') {
-                                //  messageContainer.innerHTML = `<div class="p-4 mb-4 text-green-800 bg-green-100 border border-green-300 rounded-md">${response.message}</div>`;  // Show success message
 
                                 // Now send the event ID to the sendWelcomeEmail route
                                 $.ajax({
-                                    url: '{{ route('send-mail',['event_id' => $event->id]) }}', // Pass event ID dynamically
+                                    url: '{{ route('send-mail', ['event_id' => $event->id]) }}', // Pass event ID dynamically
                                     type: 'GET',
                                     data: {
                                         _token: csrfToken
@@ -218,8 +249,13 @@
                                         if (response.status === 'success') {
                                             messageContainer.innerHTML =
                                                 `<div class="p-4 mb-4 text-green-800 bg-green-100 border border-green-300 rounded-md">${response.message}</div>`;
-                                         }
-                                          console.log('Email sent successfully:',
+
+
+                                            // // Redirect to the hosted checkout route with event ID
+                                            // window.location.href = `/checkout3?event_id=${id}`;
+
+                                        }
+                                        console.log('Email sent successfully:',
                                             mailResponse);
                                     },
                                     error: function(mailError) {

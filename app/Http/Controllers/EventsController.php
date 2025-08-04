@@ -30,7 +30,7 @@ class EventsController extends Controller
             });
         }
 
-        
+
         // if (!empty($request->club_location)) {
         //     $events = $events->where('club_location', $request->club_location);
         // }
@@ -79,11 +79,38 @@ class EventsController extends Controller
 
     public function detail($id)
     {
+        // $event = Event::where([
+        //     'id' => $id,
+        //     'status' => 1
+        // ])->with(['deptType', 'category', 'location'])->first();
+        // return view('front.eventDetail', ['event' => $event]);
+
+
+
+        // Fetch the event details
         $event = Event::where([
             'id' => $id,
             'status' => 1
         ])->with(['deptType', 'category', 'location'])->first();
-        return view('front.eventDetail', ['event' => $event]);
+
+
+        // Check if the logged-in user has already applied for the event
+        $hasApplied = false;
+        if (Auth::check()) {
+            $hasApplied = EventApplication::where('admitted_user_id', Auth::id())
+                ->where('event_id', $id)
+                ->exists();
+        }
+
+        // Pass the necessary data to the Blade template
+        return view('front.eventDetail', [
+            'event' => $event,
+            'hasApplied' => $hasApplied
+        ]);
+
+
+
+        
     }
 
 
@@ -97,7 +124,7 @@ class EventsController extends Controller
     {
         $id = $request->id;
         $events = Event::find($id);
-    
+
         // Check if the event exists
         if ($events === null) {
             return response()->json([
@@ -105,7 +132,7 @@ class EventsController extends Controller
                 'message' => 'Event does not exist'
             ]);
         }
-    
+
         // Prevent applying to own event
         $organizer = $events->user_id;
         if ($organizer == Auth::id()) {
@@ -114,7 +141,7 @@ class EventsController extends Controller
                 'message' => 'You cannot apply to your own event'
             ]);
         }
-    
+
 
 
 
@@ -127,7 +154,7 @@ class EventsController extends Controller
         //     'organizer_user_id' =>  $events->user_id,
         //     'applied_date' => now(),
         // ];
-    
+
         // Use dd() to dump and die (stop execution)
         //dd($applicationData);
 
@@ -143,12 +170,11 @@ class EventsController extends Controller
 
 
         // Redirect to the event page (adjust the route if needed)
-       // return redirect()->route('events')->with('success', 'You have successfully applied');
-    
+        // return redirect()->route('events')->with('success', 'You have successfully applied');
+
         return response()->json([
             'status' => 'success',
             'message' => 'You have successfully applied'
         ]);
     }
-    
 }
