@@ -1,7 +1,7 @@
 @extends('front.layouts.app')
 
 @section('main')
-<section class="py-5 bg-gray-200">
+<section class="py-5 bg-gray">
     <div class="container mx-auto">     
         <div class="flex flex-wrap items-center">
             <div class="w-full md:w-5/6">
@@ -20,20 +20,20 @@
         <div class="flex flex-wrap pt-5">
             <div class="w-full md:w-1/3 mb-4">
                 <form action="" name="searchForm" id="searchForm">
-                    <div class="bg-white rounded-lg shadow-md p-6">
+                    <div class="bg-white shadow-md p-6">
                         <div class="mb-4">
                             <h2 class="text-lg font-semibold">Keywords</h2>
-                            <input value="{{ Request::get('keyword') }}" type="text" name="keyword" id="keyword" placeholder="Keywords" class="form-input mt-2 w-full border border-gray-300 rounded-md p-2">
+                            <input value="{{ Request::get('keyword') }}" type="text" name="keyword" id="keyword" placeholder="Keywords" class="form-input mt-2 w-full border border-gray-300  p-2">
                         </div>
 
                         <div class="mb-4">
                             <h2 class="text-lg font-semibold">Location</h2>
-                            <input value="{{ Request::get('location') }}" type="text" name="location" id="location" placeholder="Location" class="form-input mt-2 w-full border border-gray-300 rounded-md p-2">
+                            <input value="{{ Request::get('location') }}" type="text" name="location" id="location" placeholder="Location" class="form-input mt-2 w-full border border-gray-300  p-2">
                         </div>
 
                         {{-- <div class="mb-4">
                             <h2 class="text-lg font-semibold">Category</h2>
-                            <select name="category" id="category" class="form-select w-full border border-gray-300 rounded-md p-2">
+                            <select name="category" id="category" class="form-select w-full border border-gray-300  p-2">
                                 <option value="">Select a Category</option>
                                 @if ($categories)
                                     @foreach ($categories as $category)
@@ -84,7 +84,7 @@
 
                         {{-- <div class="mb-4">
                             <h2 class="text-lg font-semibold">Experience</h2>
-                            <select name="experience" id="experience" class="form-select w-full border border-gray-300 rounded-md p-2">
+                            <select name="experience" id="experience" class="form-select w-full border border-gray-300  p-2">
                                 <option value="">Select Experience</option>
                                 @foreach(range(1, 10) as $year)
                                     <option value="{{ $year }}" {{ (Request::get('experience') == $year) ? 'selected' : '' }}>{{ $year }} Year{{ $year > 1 ? 's' : '' }}</option>
@@ -110,9 +110,15 @@
                             </select>
                         </div>
                         
-                        <button type="submit" class="w-full py-2 mt-4 text-white bg-blue-500 rounded-lg hover:bg-blue-600">Search</button>
+                        <button type="submit" class="w-full py-2 mt-4 text-white bg-gray-900">Search</button>
                         
-                        <a href="{{ route("events") }}" class="btn btn-secondary mt-3">Reset</a>
+                        <div class="flex justify-center">
+                            <a href="{{ route('events') }}" class="btn bg-gray-900 text-white mt-3 px-4 py-2 ">
+                                Reset
+                            </a>
+                        </div>
+                        
+                        
                     </div>
                 </form>
             </div>
@@ -124,11 +130,11 @@
                             @if ($events->isNotEmpty())
                                 @foreach ($events as $event)
                                 <div class="w-full md:w-1/3 p-2">
-                                    <div class="bg-white rounded-lg shadow-md p-4">
+                                    <div class="bg-white shadow-md p-4">
                                         <h3 class="text-lg font-semibold border-b pb-2 mb-2">{{ $event->title }}</h3>
                                         <p>{{ Str::words(strip_tags($event->description), $words=10, '...') }}</p>
 
-                                        <div class="bg-gray-100 p-3 border mt-3">
+                                        <div class="bg-gray-200 p-3 border mt-3">
                                             <p class="mb-2">
                                                 <span class="font-semibold"><i class="fa fa-map-marker-alt"></i> {{ $event->location->versity_name }}</span>
                                             </p>
@@ -146,7 +152,7 @@
                                         </div>
 
                                         <div class="flex justify-center mt-4">
-                                            <a href="{{ route('eventsDetail',$event->id) }}" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg"">Details</a>
+                                            <a href="{{ route('eventsDetail',$event->id) }}" class="bg-gray-900 text-white font-bold py-2 px-4">Details</a>
                                         </div>
                                     </div>
                                 </div>

@@ -38,7 +38,7 @@
     <div class="row">
         <div class="col-md-4 order-md-2 mb-4">
             <h4 class="d-flex justify-content-between align-items-center mb-3">
-                <span class="text-muted">Event Details</span>
+                <span class="text-black">Event Details</span>
                 {{-- <span class="badge badge-secondary badge-pill">3</span> --}}
             </h4>
             <ul class="list-group mb-3">
@@ -166,7 +166,7 @@
     </div>
 
     <footer class="my-5 pt-5 text-muted text-center text-small">
-        <p class="mb-1">&copy; 2019 Company Name</p>
+        <p class="mb-1">&copy; University Club management, all rights reserved</p>
         <ul class="list-inline">
             <li class="list-inline-item"><a href="#">Privacy</a></li>
             <li class="list-inline-item"><a href="#">Terms</a></li>

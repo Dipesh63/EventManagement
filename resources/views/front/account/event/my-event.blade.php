@@ -23,7 +23,7 @@
                 <div class="bg-white rounded-md shadow-sm p-5">
                     <div class="flex justify-between items-center mb-6">
                         <h3 class="text-lg font-semibold">My Events</h3>
-                        <a href="{{ route('account.createEvent') }}" class="btn bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700">Post an Event</a>
+                        <a href="{{ route('account.createEvent') }}" class="btn bg-gray-900 text-white py-2 px-4">Post an Event</a>
                     </div>
                     <div class="overflow-x-auto">
                         <table class="min-w-full bg-white border border-gray-200">

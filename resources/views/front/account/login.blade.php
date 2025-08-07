@@ -27,27 +27,27 @@
 
         <div class="flex justify-center">
             <div class="w-full md:w-2/5">
-                <div class="bg-white shadow-lg rounded-lg p-8">
-                    <h1 class="text-2xl font-semibold mb-6">Login</h1>
+                <div class="bg-white shadow-lg  p-8">
+                    <h1 class="flex justify-center text-2xl font-semibold mb-6">Login</h1>
                     <form action="{{ route('account.authenticateUser') }}" method="post">
                         @csrf
                         <div class="mb-4">
                             <label for="email" class="block text-sm font-medium mb-2">Email*</label>
-                            <input type="text" name="email" id="email" placeholder="example@example.com" class="w-full p-3 border rounded-lg focus:outline-none focus:border-blue-500 @error('email') border-red-500 @enderror">
+                            <input type="text" name="email" id="email" placeholder="example@example.com" class="w-full p-3 border  focus:outline-none focus:border-blue-500 @error('email') border-red-500 @enderror">
                             @error('email')
                                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                             @enderror
                         </div>
                         <div class="mb-4">
                             <label for="password" class="block text-sm font-medium mb-2">Password*</label>
-                            <input type="password" name="password" id="password" placeholder="Enter Password" class="w-full p-3 border rounded-lg focus:outline-none focus:border-blue-500 @error('password') border-red-500 @enderror">
+                            <input type="password" name="password" id="password" placeholder="Enter Password" class="w-full p-3 border  focus:outline-none focus:border-blue-500 @error('password') border-red-500 @enderror">
                             @error('password')
                                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                             @enderror
                         </div>
-                        <div class="flex justify-between items-center">
-                            <button class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg mt-2">Login</button>
-                            <a href="forgot-password.html" class="text-blue-500 hover:underline mt-3">Forgot Password?</a>
+                        <div class="flex justify-center items-center w-full">
+                            <button class="bg-gray-900 text-white font-semibold py-2 px-4 mt-2">Login</button>
+                            {{-- <a href="forgot-password.html" class="text-blue-500 hover:underline mt-3">Forgot Password?</a> --}}
                         </div>
                     </form>
                 </div>
@@ -62,7 +62,7 @@
 <!-- Google Login button -->
 <form action="{{ route('google-auth') }}" method="GET">
     @csrf
-    <button type="submit" class="btn btn-danger btn-block">Login Using Google</button>
+    <button type="submit" class="bg-gray-900 text-white px-4 py-2 w-full mt-2">Login Using Google</button>
 </form>
 
 

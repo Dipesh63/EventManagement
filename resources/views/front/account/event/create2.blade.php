@@ -18,7 +18,7 @@
                     <!-- Event Details Card -->
                     <div class="bg-white rounded-lg shadow-md mb-6">
                         <div class="p-6">
-                            <h3 class="text-2xl font-semibold mb-4">Event Details</h3>
+                            <h3 class="flex justify-center text-2xl font-semibold mb-4">Event Details</h3>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 
 
@@ -166,8 +166,8 @@
                                     <input type="text" name="website" id="website" placeholder="Club Website" class="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:border-blue-500">
                                 </div>
     
-                                <div class="p-6 bg-gray-50 text-right">
-                                    <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600">Submit</button>
+                                <div class="p-6 flex justify-center">
+                                    <button type="submit" class="bg-gray-900 text-white py-2 px-4">Submit</button>
                                 </div>
                             </div>
                         </div>

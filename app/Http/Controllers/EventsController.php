@@ -113,11 +113,25 @@ class EventsController extends Controller
                 ->exists();
         }
 
+
+
+
+// Check if the logged-in user is the creater of that event or not
+$hasCreated = false;
+if (Auth::check()) {
+    $hasCreated = Event::where('user_id', Auth::id())
+        ->where('id', $id)
+        ->exists();
+}
+
+
+
         // Pass the necessary data to the Blade template
         return view('front.eventDetail', [
             'event' => $event,
             'hasApplied' => $hasApplied,
             'hasPaid' => $hasPaid,
+            'hasCreated' => $hasCreated,
         ]);
 
 

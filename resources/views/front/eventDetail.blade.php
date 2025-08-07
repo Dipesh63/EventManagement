@@ -4,10 +4,10 @@
     <section class="bg-gray-100 py-10">
         <div class="container mx-auto pt-5">
             <div class="flex justify-start">
-                <nav aria-label="breadcrumb" class="bg-white rounded-lg p-3 shadow">
+                <nav aria-label="breadcrumb" class="bg-gray-900  p-3 shadow">
                     <ol class="flex space-x-2 text-gray-700">
                         <li>
-                            <a href="" class="flex items-center text-blue-600 hover:underline">
+                            <a href="/events" class="flex items-center text-white hover:underline">
                                 <i class="fa fa-arrow-left mr-2"></i> Back to Events
                             </a>
                         </li>
@@ -25,7 +25,7 @@
         <div class="container mx-auto mt-8">
             <div class="flex flex-wrap pb-5">
                 <div class="w-full lg:w-2/3 mb-6 lg:mb-0">
-                    <div class="bg-white shadow-lg rounded-lg">
+                    <div class="bg-white shadow-lg ">
                         <div class="p-5 border-b">
                             <div class="flex justify-between items-center">
                                 <div class="flex items-center space-x-4">
@@ -76,31 +76,41 @@
                                 {{-- Payment Button --}}
                                 @if (Auth::check())
                                     @if ($hasPaid)
-                                        <button class="bg-gray-400 text-white py-2 px-4 rounded-lg" disabled>Paid</button>
+                                        <button class="bg-gray-900 text-white py-2 px-4 " disabled>Paid</button>
                                     @else
                                         <a href="javascript:void(0)" id="paymentButton"
-                                            class="bg-gray-200 hover:bg-gray-300 text-gray-700 py-2 px-4 rounded-lg mr-8">Payment</a>
+                                            class="bg-gray-900 hover:bg-gray-900 text-white py-2 px-4  mr-8">Payment</a>
                                     @endif
                                 @else
                                     <a href="{{ route('login') }}"
-                                        class="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 mr-8">Log in to
+                                        class="bg-gray-900 text-white py-2 px-4">Log in to
                                         Pay</a>
                                 @endif
 
                                 {{-- Apply Button --}}
                                 @if (Auth::check())
                                     @if ($hasApplied)
-                                        <button class="bg-gray-400 text-white py-2 px-4 rounded-lg"
+                                        <button class="bg-gray-900 text-white py-2 px-4 "
                                             disabled>Applied</button>
                                     @else
                                         <a id="applyButton" data-id="{{ $event->id }}"
-                                            class="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 mr-8">Apply</a>
+                                            class="bg-gray-900 text-white py-2 px-4 cursor-pointer">Apply</a>
                                     @endif
                                 @else
                                     <a href="{{ route('login') }}"
-                                        class="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 mr-8">Log in to
+                                        class="bg-gray-900 text-white py-2 px-4mr-8">Log in to
                                         Apply</a>
                                 @endif
+
+{{-- Upload Button --}}
+@if (Auth::check())
+@if ($hasCreated)
+    {{-- <button class="bg-gray-900 text-white py-2 px-4 " disabled>Upload Materials</button> --}}
+    <a href="{{ route('Materials_uploadRoute',  ['event_id' => $event->id] ) }}"><button class="bg-gray-900 text-white py-2 px-4 "  name="uploadbtn">Upload materilas</button></a>
+@endif
+@endif
+
+
                             </div>
 
 
@@ -112,7 +122,7 @@
                     </div>
                 </div>
                 <div class="w-full lg:w-1/3">
-                    <div class="bg-white shadow-lg rounded-lg p-5 mb-4">
+                    <div class="bg-white shadow-lg  p-5 mb-4">
                         <h3 class="text-xl font-semibold text-gray-800 mb-4">Event Summary</h3>
                         <ul class="text-gray-600 space-y-2">
                             <li>Vacancy: <span class="font-medium">{{ $event->vacancy }}</span></li>
@@ -121,12 +131,13 @@
                             <li>Department Type: <span class="font-medium">{{ $event->deptType->name }}</span></li>
                         </ul>
                     </div>
-                    <div class="bg-white shadow-lg rounded-lg p-5">
+                    <div class="bg-white shadow-lg  p-5">
                         <h3 class="text-xl font-semibold text-gray-800 mb-4">Club Details</h3>
                         <ul class="text-gray-600 space-y-2">
                             <li>Name: <span class="font-medium">{{ $event->club_name }}</span></li>
                             <li>Location: <span class="font-medium">{{ $event->club_location }}</span></li>
-                            <li>Website: <span class="font-medium">{{ $event->club_website }}</span></li>
+                            <li>Website: <a href="{{ (filter_var($event->club_website, FILTER_VALIDATE_URL)) ? $event->club_website : 'http://' . $event->club_website }}" class="font-medium cursor-pointer" target="_blank">{{ $event->club_website }}</a></li>
+
                         </ul>
                     </div>
                 </div>

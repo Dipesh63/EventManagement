@@ -18,7 +18,7 @@
     <!-- Button to open modal -->
     <button 
         type="button" 
-        class="btn-primary px-4 py-2 rounded-md text-white bg-blue-600 hover:bg-blue-700 mb-3" 
+        class="btn-primary px-4 py-2 text-white bg-gray-900 mt-3 mb-3" 
         onclick="toggleModal(true)">
         Change Profile Picture
     </button>
@@ -87,26 +87,26 @@
     <div class="p-0">
         <ul class="list-none">
             <li class="border-b last:border-b-0">
-                <a href="{{ route('account.profile') }}" class="block py-3 px-4 hover:bg-gray-100">Account Settings</a>
+                <a href="{{ route('account.profile') }}" class="block py-3 px-4 hover:bg-gray-900 hover:text-white">Account Settings</a>
             </li>
             <li class="border-b last:border-b-0">
-                <a href="{{ route('account.createEvent') }}" class="block py-3 px-4 hover:bg-gray-100">Post a Event</a>
+                <a href="{{ route('account.createEvent') }}" class="block py-3 px-4 hover:bg-gray-900 hover:text-white">Post a Event</a>
             </li>
             <li class="border-b last:border-b-0">
-                <a href="{{ route('account.myEvents') }}" class="block py-3 px-4 hover:bg-gray-100">MyCreated Events</a>
+                <a href="{{ route('account.myEvents') }}" class="block py-3 px-4 hover:bg-gray-900 hover:text-white">MyCreated Events</a>
             </li>
             <li class="border-b last:border-b-0">
-                <a href="/events" class="block py-3 px-4 hover:bg-gray-100">Show All Events</a>
+                <a href="/events" class="block py-3 px-4 hover:bg-gray-900 hover:text-white">Show All Events</a>
             </li>
             <li class="border-b last:border-b-0">
-                <a href="/account/my-event-applications" class="block py-3 px-4 hover:bg-gray-100">ShowEventsWhereIapplied</a>
+                <a href="/account/my-event-applications" class="block py-3 px-4 hover:bg-gray-900 hover:text-white">ShowEventsWhereIapplied</a>
             </li>
             <li class="border-b last:border-b-0">
-                <a href="{{ route('account.showApplicants') }}" class="block py-3 px-4 hover:bg-gray-100">Applicants for My Events</a>
+                <a href="{{ route('account.showApplicants') }}" class="block py-3 px-4 hover:bg-gray-900 hover:text-white">Applicants for My Events</a>
             </li>
             
             <li class="border-b last:border-b-0">
-                <a href="{{ route('account.logout') }}" class="block py-3 px-4 hover:bg-gray-100">Logout</a>
+                <a href="{{ route('account.logout') }}" class="block py-3 px-4 hover:bg-gray-900 hover:text-white">Logout</a>
             </li>
             {{-- <li class="border-b last:border-b-0">
                 <a href="job-applied.html" class="block py-3 px-4 hover:bg-gray-100">Events Applied</a>

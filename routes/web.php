@@ -8,6 +8,7 @@ use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SMSController;
 use App\Http\Controllers\SslCommerzPaymentController;
+use App\Http\Controllers\UploadController;
 use App\Http\Middleware\Authenticate;
 
 
@@ -58,7 +59,7 @@ Route::get('/dashboardnew2', [AccountController::class, 'dashboardnew2'])->name(
 Route::get('/send-mail/{event_id}', [EmailController::class, 'sendWelcomeEmail'])->name('send-mail');
 
 
-
+//My Applied Events and cancel Events
 Route::get('/account/my-event-applications', [AccountController::class, 'myEventApplication'])->name('account.myEventApplication');
 Route::post('/cancel-event-application', [AccountController::class, 'cancelEvents'])->name('account.cancelEvents');
 
@@ -138,4 +139,24 @@ Route::middleware([Authenticate::class])->group(function () {
 
 Route::get('/account/applicants', [AccountController::class, 'showApplicants'])->name('account.showApplicants');
 Route::post('/account/update-profile-picture', [AccountController::class, 'updateProfilePicture'])->name('account.updateProfilePicture');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Materilas Uploading
+Route::get('/materilas_uploading/{event_id}', [UploadController::class, 'Choosefunc'])->name('Materials_uploadRoute');
+Route::get('/upload/{event_id}',[UploadController::class,'uploadvidefunc'])->name('uploadVideo_Route');
+Route::post('/uploadvideo/{event_id}', [UploadController::class, 'uploadvideofuncinDB'])->name('uploadvideoInDB');
+
 
