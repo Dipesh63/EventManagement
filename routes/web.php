@@ -160,3 +160,8 @@ Route::get('/upload/{event_id}',[UploadController::class,'uploadvidefunc'])->nam
 Route::post('/uploadvideo/{event_id}', [UploadController::class, 'uploadvideofuncinDB'])->name('uploadvideoInDB');
 
 
+
+Route::get('/materilas_seeing/{event_id}', [UploadController::class, 'Choosefunc2'])->name('Materials_SeeRoute');
+Route::get('/see/{event_id}',[UploadController::class,'seevidefunc'])->name('seeVideo_Route');
+Route::get('/download/{file}', [UploadController::class, 'downloadfunc']);
+Route::get('/view/{id}', [UploadController::class, 'viewfunc']);

@@ -16,6 +16,12 @@ class UploadController extends Controller
     }
 
 
+    public function Choosefunc2($event_id)
+    {
+        return view('Upload.choose2', compact('event_id'));
+    }
+
+
 
 
 
@@ -30,6 +36,19 @@ class UploadController extends Controller
     {
         return view('Upload.uploadvideo', compact('event_id'));
     }
+
+
+    public function seevidefunc($event_id)
+    {
+         // $data=Videoupload::all();
+        //Fetch only videos where event_id matches the provided $event_id
+        $data = Videoupload::where('event_id', $event_id)->get();
+        return view('Upload.seevideo',compact('data'));
+        
+    }
+
+
+
 
 
 
@@ -59,6 +78,22 @@ class UploadController extends Controller
 
         return redirect()->back()->with('success', 'Video uploaded successfully!');
     }
+
+
+
+    
+    public function downloadfunc(Request $request, $file)
+    {
+        return response()->download(public_path('assets/' . $file));
+    }
+    
+    
+    
+     public function viewfunc($id){
+        $data=Videoupload::find($id);
+        return view('viewVideo',compact('data'));
+    
+     }
 
 
 }

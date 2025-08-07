@@ -111,6 +111,18 @@
 @endif
 
 
+
+
+
+
+{{-- See Button --}}
+@if (Auth::check())
+@if ($hasApplied)  
+    <a href="{{ route('Materials_SeeRoute',  ['event_id' => $event->id] ) }}"><button class="bg-gray-900 text-white py-2 px-4 "  name="uploadbtn">See materilas</button></a> 
+@endif
+@endif
+
+
                             </div>
 
 
